@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Heading } from "@chakra-ui/react"
 import * as API from "./services/products"
-import { ProductsItem } from "./components/product";
+import { DisplayItems } from "./components/itemsDisplay";
 
 export function App() {
   const [products, setProducts] = useState([]);
@@ -10,15 +9,6 @@ export function App() {
   }, []);
 
   return (
-    <>
-      <Heading as="h1" size="lg" margin={4}>
-        Productos
-      </Heading>
-      <section>
-        {products.map(product => (
-          ProductsItem(product)
-        ))}
-      </section>
-    </>
+    DisplayItems(products, "Products")
   );
 }
