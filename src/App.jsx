@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import * as API from "./services/products"
 import { DisplayItems } from "./components/itemsDisplay";
+import { AddItem } from "./components/addItem";
 
 export function App() {
   const [products, setProducts] = useState([]);
@@ -9,6 +10,9 @@ export function App() {
   }, []);
 
   return (
-    DisplayItems(products, "Products")
+    <>
+      {DisplayItems(products, "Products")}
+      {AddItem("Product")}
+    </>
   );
 }

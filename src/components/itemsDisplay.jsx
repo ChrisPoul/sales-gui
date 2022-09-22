@@ -1,4 +1,6 @@
-import { Box, Text, Flex, Spacer, Button, Icon, Heading } from "@chakra-ui/react"
+import {
+    Box, Text, Flex, Spacer, Button, Icon, Heading
+} from "@chakra-ui/react"
 import { HiCalendar } from "react-icons/hi"
 import dayjs from "dayjs"
 import "dayjs/locale/es"
