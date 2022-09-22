@@ -20,6 +20,19 @@ export async function addProduct(productData) {
         redirect: 'follow',
         body: JSON.stringify(productData)
     });
-    const data = await response.json()
+    const data = await response.json();
     return data;
+}
+
+export async function deleteProduct(productId) {
+    const response = await fetch(
+        API_URL + "/" + productId,
+        {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow'
+        }
+    )
 }
