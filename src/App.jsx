@@ -12,7 +12,6 @@ export function App() {
   return (
     <>
       {DisplayItems(products, "Products")}
-      {AddItem("Product")}
     </>
   );
 }
