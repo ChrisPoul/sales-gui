@@ -14,14 +14,10 @@ export async function getAllProducts() {
 export async function addProduct(productData) {
     const response = await fetch(API_URL, {
         method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },
         redirect: 'follow',
-        referrerPolicy: 'no-referrer',
         body: JSON.stringify(productData)
     });
     const data = await response.json()
