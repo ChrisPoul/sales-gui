@@ -4,21 +4,24 @@ import {
 } from "@chakra-ui/react"
 import * as API from "../services/products"
 
-export function AddItem(heading) {
+export function AddProduct(heading) {
     const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
+    const [description, setDescription] = useState("")
 
     const handleSubmit = event => {
         event.preventDefault()
         const response = API.addProduct({
             name: name,
-            price: price
+            price: price,
+            description: description
         })
         response.then(data => {
             if (data == null) {
-                alert("Success")
+                alert("Operación exitosa")
                 setName("")
                 setPrice(0)
+                setDescription("")
             } else {
                 for (const key in data) {
                     alert(data[key])
@@ -35,6 +38,14 @@ export function AddItem(heading) {
                         name="name"
                         value={name}
                         onChange={event => setName(event.currentTarget.value)}
+                    />
+                </FormControl>
+                <FormControl key="description">
+                    <FormLabel>Descripción</FormLabel>
+                    <Input
+                        name="description"
+                        value={description}
+                        onChange={event => setDescription(event.currentTarget.value)}
                     />
                 </FormControl>
                 <FormControl key="price" isRequired>

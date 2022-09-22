@@ -11,6 +11,12 @@ export async function getAllProducts() {
     }
 }
 
+export async function getProduct(productId) {
+    const response = await fetch(API_URL + "/" + productId)
+    const data = await response.json()
+    return data
+}
+
 export async function addProduct(productData) {
     const response = await fetch(API_URL, {
         method: 'POST',

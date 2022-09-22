@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
-import * as API from "./services/products"
-import { DisplayItems } from "./components/itemsDisplay";
-import { AddItem } from "./components/addItem";
+import { Routes, Route, Link } from "react-router-dom"
+import { AddProduct } from "./components/AddProduct";
+import { ProductDetails } from "./components/ProductDetails";
+import { ProductsList } from "./components/ProductsList";
 
 export function App() {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    API.getAllProducts().then(setProducts)
-  }, []);
-
   return (
     <>
-      {DisplayItems(products, "Products")}
+      <Routes>
+        <Route path="/" element={<ProductsList />} />
+        <Route path="product/:productId" element={<ProductDetails />} />
+        <Route path="addProduct" element={<AddProduct />} />
+      </Routes>
     </>
   );
 }
