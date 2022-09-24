@@ -3,7 +3,7 @@ import {
     Box, Button
 } from "@chakra-ui/react"
 import * as API from "../services/products"
-import { FormInput, Form } from "./common/FormInput"
+import { FormInput } from "./common/FormInput"
 
 export function AddProduct() {
     const [name, setName] = useState("")
@@ -30,32 +30,31 @@ export function AddProduct() {
             }
         })
     }
-    const inputFields = [
-        {
-            inputName: "name",
-            inputValue: name,
-            setInput: setName,
-            inputLabel: "Nombre",
-            inputType: "text"
-        },
-        {
-            inputName: "description",
-            inputValue: description,
-            setInput: setDescription,
-            inputLabel: "Descripción",
-            inputType: "text"
-        },
-        {
-            inputName: "price",
-            inputValue: price,
-            setInput: setPrice,
-            inputLabel: "Price",
-            inputType: "number"
-        }
-    ]
     return (
         <Box>
-            {Form(handleSubmit, inputFields)}
+            <form onSubmit={handleSubmit}>
+                {FormInput({
+                    inputName: "name",
+                    inputLabel: "Nombre",
+                    inputValue: name,
+                    setValue: setName,
+                    isRequired: true
+                })}
+                {FormInput({
+                    inputName: "description",
+                    inputLabel: "Descripción",
+                    inputValue: description,
+                    setValue: setDescription
+                })}
+                {FormInput({
+                    inputName: "price",
+                    inputLabel: "Price",
+                    inputValue: price,
+                    setValue: setPrice,
+                    inputType: "number"
+                })}
+                <Button type="submit">Aceptar</Button>
+            </form>
         </Box>
     )
 }
