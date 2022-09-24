@@ -4,19 +4,7 @@ import {
 } from "@chakra-ui/react"
 
 export function FormInput(inputName, inputValue, setInput, inputLabel, inputType = "text") {
-    if (inputType != "number") {
-        return (
-            <FormControl key={inputName}>
-                <FormLabel>{inputLabel}</FormLabel>
-                <Input
-                    name={inputName}
-                    type={inputType}
-                    value={inputValue}
-                    onChange={event => setInput(event.currentTarget.value)}
-                />
-            </FormControl>
-        )
-    } else {
+    if (inputType == "number") {
         return (
             <NumberInput
                 key={inputName}
@@ -28,13 +16,25 @@ export function FormInput(inputName, inputValue, setInput, inputLabel, inputType
 
             >
                 <NumberInputField
-                    onInvalid={event => { event.target.setCustomValidity('El numero debe tener un máximo de 2 decimales') }}
+                    onInvalid={event => event.target.setCustomValidity('El numero tener un máximo de 2 decimales')}
                 />
                 <NumberInputStepper>
                     <NumberIncrementStepper />
                     <NumberDecrementStepper />
                 </NumberInputStepper>
             </NumberInput>
+        )
+    } else {
+        return (
+            <FormControl key={inputName}>
+                <FormLabel>{inputLabel}</FormLabel>
+                <Input
+                    name={inputName}
+                    type={inputType}
+                    value={inputValue}
+                    onChange={event => setInput(event.currentTarget.value)}
+                />
+            </FormControl>
         )
     }
 }
