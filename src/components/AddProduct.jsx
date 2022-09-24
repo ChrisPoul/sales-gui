@@ -1,10 +1,11 @@
 import { useState } from "react";
 import {
-    Box, Input, Button, FormControl, FormLabel
+    Box, Button
 } from "@chakra-ui/react"
 import * as API from "../services/products"
+import { FormInput, Form } from "./common/FormInput"
 
-export function AddProduct(heading) {
+export function AddProduct() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState("")
@@ -29,36 +30,32 @@ export function AddProduct(heading) {
             }
         })
     }
+    const inputFields = [
+        {
+            inputName: "name",
+            inputValue: name,
+            setInput: setName,
+            inputLabel: "Nombre",
+            inputType: "text"
+        },
+        {
+            inputName: "description",
+            inputValue: description,
+            setInput: setDescription,
+            inputLabel: "Descripción",
+            inputType: "text"
+        },
+        {
+            inputName: "price",
+            inputValue: price,
+            setInput: setPrice,
+            inputLabel: "Price",
+            inputType: "number"
+        }
+    ]
     return (
         <Box>
-            <form onSubmit={handleSubmit}>
-                <FormControl key="name" isRequired>
-                    <FormLabel>Nombre</FormLabel>
-                    <Input
-                        name="name"
-                        value={name}
-                        onChange={event => setName(event.currentTarget.value)}
-                    />
-                </FormControl>
-                <FormControl key="description">
-                    <FormLabel>Descripción</FormLabel>
-                    <Input
-                        name="description"
-                        value={description}
-                        onChange={event => setDescription(event.currentTarget.value)}
-                    />
-                </FormControl>
-                <FormControl key="price" isRequired>
-                    <FormLabel>Precio</FormLabel>
-                    <Input
-                        name="price"
-                        type="number"
-                        value={price}
-                        onChange={event => setPrice(event.currentTarget.value)}
-                    />
-                </FormControl>
-                <Button type="submit">Submit</Button>
-            </form>
+            {Form(handleSubmit, inputFields)}
         </Box>
     )
 }
