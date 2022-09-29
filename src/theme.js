@@ -6,7 +6,6 @@ const Button = {
     // The styles all button have in common
     baseStyle: {
         fontWeight: 'bold',
-        textTransform: 'uppercase',
         borderRadius: 'base', // <-- border radius is same for all variants and sizes
     },
     // Two variants: outline and solid
@@ -30,6 +29,5 @@ const Button = {
 export const theme = extendTheme({
     components: {
         Button,
-
     }
 })

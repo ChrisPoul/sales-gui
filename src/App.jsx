@@ -6,7 +6,7 @@ import { HomePage } from "./components/HomePage";
 import { AddProduct } from "./components/AddProduct";
 import { ProductDetails } from "./components/ProductDetails";
 import { ProductsList } from "./components/ProductsList";
-import { SideMenu } from "./components/SideMenu";
+import { SideBar } from "./components/SideBar";
 import { NavBar } from "./components/NavBar";
 
 export function App() {
@@ -19,7 +19,7 @@ export function App() {
         align="stretch"
         divider={<StackDivider borderColor='gray.300' />}
       >
-        <SideMenu />
+        <SideBar />
         <Box width="100%" padding={5}>
           <Routes>
             <Route path="/" element={<HomePage />} />
