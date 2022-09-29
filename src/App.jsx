@@ -13,7 +13,12 @@ export function App() {
   return (
     <>
       <NavBar />
-      <HStack spacing={5} padding={3} align="stretch" divider={<StackDivider borderColor='gray.300' />}>
+      <HStack
+        spacing={5}
+        padding={3}
+        align="stretch"
+        divider={<StackDivider borderColor='gray.300' />}
+      >
         <SideMenu />
         <Box width="100%" padding={5}>
           <Routes>
