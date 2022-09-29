@@ -13,12 +13,11 @@ const Button = {
     variants: {
         outline: {
             border: '2px solid',
-            borderColor: 'purple.500',
-            color: 'purple.500',
         },
         solid: {
-            bg: 'purple.500',
-            color: 'white',
+            display: 'flex',
+            width: "100%",
+            bg: 'inherit'
         },
     },
     // The default size and variant values
@@ -31,5 +30,6 @@ const Button = {
 export const theme = extendTheme({
     components: {
         Button,
-    },
+
+    }
 })
