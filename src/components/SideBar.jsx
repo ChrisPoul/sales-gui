@@ -16,7 +16,7 @@ export function SideBar() {
         >
             {Section("Productos", "/products", MdProductionQuantityLimits)}
             {Section("Recibos", "#", MdOutlineReceiptLong)}
-            {Section("Algo muy largo para ver que pex", "#")}
+            {Section("Algo muy largo ", "#")}
         </VStack>
     )
 }

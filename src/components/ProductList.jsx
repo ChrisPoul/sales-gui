@@ -8,26 +8,32 @@ import dayjs from "dayjs"
 import "dayjs/locale/es"
 import * as API from "../services/products"
 
-export function ProductsList() {
+export function ProductList() {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         API.getAllProducts().then(setProducts)
     }, []);
     return (
         <>
-            <Heading as="h1" size="lg" margin={4}>
-                Products
-            </Heading>
+            <Flex align="center">
+                <Heading as="h1" size="lg" margin={4}>
+                    Products
+                </Heading>
+                <Spacer />
+                <Link to="/addProduct">
+                    <Button>Añadir Producto</Button>
+                </Link>
+            </Flex>
             <section>
                 {products.map(product => (
-                    ProductsListItem(product)
+                    ProductListItem(product)
                 ))}
             </section>
         </>
     )
 }
 
-export function ProductsListItem(product) {
+export function ProductListItem(product) {
     return (
         <Box key={product.id} bg="gray.100" padding={2} margin={4} borderRadius="lg">
             <Flex>
@@ -55,6 +61,9 @@ export function ProductsListItem(product) {
                     More details
                 </Button>
             </Link>
+            <Button id={product.id} colorScheme="red" onClick={event => API.deleteProduct(event.target.id)}>
+                Delete
+            </Button>
         </Box>
     )
 }

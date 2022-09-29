@@ -5,7 +5,7 @@ import {
 import { HomePage } from "./components/HomePage";
 import { AddProduct } from "./components/AddProduct";
 import { ProductDetails } from "./components/ProductDetails";
-import { ProductsList } from "./components/ProductsList";
+import { ProductList } from "./components/ProductList";
 import { SideBar } from "./components/SideBar";
 import { NavBar } from "./components/NavBar";
 
@@ -23,7 +23,7 @@ export function App() {
         <Box width="100%" padding={5}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="products" element={<ProductsList />} />
+            <Route path="products" element={<ProductList />} />
             <Route path="product/:productId" element={<ProductDetails />} />
             <Route path="addProduct" element={<AddProduct />} />
           </Routes>

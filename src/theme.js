@@ -28,6 +28,6 @@ const Button = {
 
 export const theme = extendTheme({
     components: {
-        Button,
+
     }
 })
