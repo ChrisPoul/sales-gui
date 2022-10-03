@@ -17,11 +17,13 @@ export function ProductDetails() {
 
     const navigate = useNavigate()
     const handleDelete = () => {
-        const response = API.deleteProduct(productId)
-        response.then(() => {
-            alert("Operación exitosa")
-            navigate("/products")
-        })
+        if (window.confirm("Estas seguro que deseas borrar")) {
+            const response = API.deleteProduct(productId)
+            response.then(() => {
+                alert("Operación exitosa")
+                navigate("/products")
+            })
+        }
     }
 
     return (
@@ -46,7 +48,7 @@ export function ProductDetails() {
                     {product.description}
                 </Text>
             </Flex>
-            <Button colorScheme="red" onClick={() => { if (window.confirm("Estas seguro que deseas borrar")) { handleDelete() } }}>
+            <Button colorScheme="red" onClick={handleDelete}>
                 Delete
             </Button>
         </Box>
