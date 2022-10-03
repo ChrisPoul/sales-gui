@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
-    Box, Flex, Text, Icon, Spacer
+    Box, Flex, Text, Icon, Spacer, Button
 } from "@chakra-ui/react"
 import { HiCalendar } from "react-icons/hi"
 import dayjs from "dayjs"
@@ -14,6 +14,15 @@ export function ProductDetails() {
     useEffect(() => {
         API.getProduct(productId).then(setProduct)
     }, [productId]);
+
+    const navigate = useNavigate()
+    const handleDelete = () => {
+        const response = API.deleteProduct(productId)
+        response.then(() => {
+            alert("Operación exitosa")
+            navigate("/products")
+        })
+    }
 
     return (
         <Box key={product.id} bg="gray.100" padding={2} margin={4} borderRadius="lg">
@@ -37,6 +46,9 @@ export function ProductDetails() {
                     {product.description}
                 </Text>
             </Flex>
+            <Button colorScheme="red" onClick={() => { if (window.confirm("Estas seguro que deseas borrar")) { handleDelete() } }}>
+                Delete
+            </Button>
         </Box>
     )
 }

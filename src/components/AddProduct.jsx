@@ -4,12 +4,14 @@ import {
 } from "@chakra-ui/react"
 import * as API from "../services/products"
 import { FormInput } from "./common/FormInput"
+import { useNavigate } from "react-router-dom";
 
 export function AddProduct() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState("")
 
+    const navigate = useNavigate()
     const handleSubmit = event => {
         event.preventDefault()
         const response = API.addProduct({
@@ -28,8 +30,10 @@ export function AddProduct() {
                     alert(data[key])
                 }
             }
+            navigate("/products")
         })
     }
+
     return (
         <Box>
             <form onSubmit={handleSubmit}>

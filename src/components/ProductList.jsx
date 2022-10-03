@@ -61,9 +61,6 @@ export function ProductListItem(product) {
                     More details
                 </Button>
             </Link>
-            <Button id={product.id} colorScheme="red" onClick={event => API.deleteProduct(event.target.id)}>
-                Delete
-            </Button>
         </Box>
     )
 }

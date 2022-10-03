@@ -4,6 +4,7 @@ export async function getAllProducts() {
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
+
         return data;
     }
     catch (error) {
@@ -14,6 +15,7 @@ export async function getAllProducts() {
 export async function getProduct(productId) {
     const response = await fetch(API_URL + "/" + productId)
     const data = await response.json()
+
     return data
 }
 
@@ -27,6 +29,7 @@ export async function addProduct(productData) {
         body: JSON.stringify(productData)
     });
     const data = await response.json();
+
     return data;
 }
 
@@ -41,4 +44,7 @@ export async function deleteProduct(productId) {
             redirect: 'follow'
         }
     )
+    const data = await response.json()
+
+    return data
 }
