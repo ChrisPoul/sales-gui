@@ -25,12 +25,12 @@ export function AddProduct() {
                 setName("")
                 setPrice(0)
                 setDescription("")
+                navigate("/products")
             } else {
                 for (const key in data) {
                     alert(data[key])
                 }
             }
-            navigate("/products")
         })
     }
 
