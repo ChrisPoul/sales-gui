@@ -5,8 +5,9 @@ import {
 import { FormInput } from "./common/FormInput"
 import { useNavigate } from "react-router-dom";
 import * as API from "../services/products"
+import { ProductForm } from "./ProductForm";
 
-export function AddProduct() {
+export function UpdateProduct() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState("")
@@ -14,7 +15,7 @@ export function AddProduct() {
     const navigate = useNavigate()
     const handleSubmit = event => {
         event.preventDefault()
-        const response = API.addProduct({
+        const response = API.updateProduct({
             name: name,
             price: price,
             description: description
@@ -34,28 +35,5 @@ export function AddProduct() {
         })
     }
 
-    return (
-        <Box>
-            <form onSubmit={handleSubmit}>
-                {FormInput({
-                    inputName: "name",
-                    inputLabel: "Nombre",
-                    setValue: setName,
-                    isRequired: true
-                })}
-                {FormInput({
-                    inputName: "description",
-                    inputLabel: "Descripción",
-                    setValue: setDescription
-                })}
-                {FormInput({
-                    inputName: "price",
-                    inputLabel: "Price",
-                    setValue: setPrice,
-                    inputType: "number"
-                })}
-                <Button type="submit">Aceptar</Button>
-            </form>
-        </Box>
-    )
+    return ProductForm(handleSubmit)
 }

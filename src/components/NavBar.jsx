@@ -14,7 +14,9 @@ export function NavBar() {
                 marginX={10}
                 shadow="lg"
                 borderRadius={10}
-                border="1px solid gray"
+                border="1px"
+                borderStyle="solid"
+                borderColor="gray.300"
                 width="50%"
             >
                 <Icon as={BiSearchAlt} boxSize={6} margin={1} />

@@ -1,12 +1,12 @@
 import {
-    Input, FormControl, FormLabel, Button, NumberInput, NumberInputField,
-    NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper
+    Input, FormControl, FormLabel, NumberInput, NumberInputField,
+    NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper,
+    Textarea
 } from "@chakra-ui/react"
 
 export function FormInput({
     inputName,
     inputLabel,
-    inputValue,
     setValue,
     inputType = "text",
     isRequired = false
@@ -18,7 +18,7 @@ export function FormInput({
                 name={inputName}
                 onChange={(value) => setValue(value)}
                 format={(value) => `$` + value}
-                value={inputValue}
+                defaultValue="0"
                 pattern="\$\d+\.?\d{0,2}"
             >
                 <NumberInputField
@@ -29,6 +29,22 @@ export function FormInput({
                     <NumberDecrementStepper />
                 </NumberInputStepper>
             </NumberInput>
+        )
+    } else if (inputType == "textarea") {
+        return (
+            <FormControl
+                key={inputName}
+                isRequired={isRequired}
+                onInvalid={event => event.target.setCustomValidity('Este valor es requerido')}
+                onInput={event => event.target.setCustomValidity('')}
+            >
+                <FormLabel>{inputLabel}</FormLabel>
+                <Textarea
+                    name={inputName}
+                    type={inputType}
+                    onChange={event => setValue(event.target.value)}
+                />
+            </FormControl>
         )
     } else {
         return (
@@ -42,7 +58,6 @@ export function FormInput({
                 <Input
                     name={inputName}
                     type={inputType}
-                    value={inputValue}
                     onChange={event => setValue(event.target.value)}
                 />
             </FormControl>
