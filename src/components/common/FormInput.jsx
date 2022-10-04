@@ -7,20 +7,22 @@ import {
 export function FormInput({
     inputName,
     inputLabel,
+    inputValue,
     setValue,
     inputType = "text",
     isRequired = false
 } = {}) {
-    if (inputType == "number") {
+    if (inputType === "number") {
         return (
             <NumberInput
                 key={inputName}
                 name={inputName}
                 onChange={(value) => setValue(value)}
                 format={(value) => `$` + value}
-                defaultValue="0"
+                value={inputValue}
                 pattern="\$\d+\.?\d{0,2}"
             >
+                <FormLabel>{inputLabel}</FormLabel>
                 <NumberInputField
                     onInvalid={event => event.target.setCustomValidity('El numero tener un máximo de 2 decimales')}
                 />
@@ -30,7 +32,7 @@ export function FormInput({
                 </NumberInputStepper>
             </NumberInput>
         )
-    } else if (inputType == "textarea") {
+    } else if (inputType === "textarea") {
         return (
             <FormControl
                 key={inputName}
@@ -42,6 +44,7 @@ export function FormInput({
                 <Textarea
                     name={inputName}
                     type={inputType}
+                    value={inputValue}
                     onChange={event => setValue(event.target.value)}
                 />
             </FormControl>
@@ -58,6 +61,7 @@ export function FormInput({
                 <Input
                     name={inputName}
                     type={inputType}
+                    value={inputValue}
                     onChange={event => setValue(event.target.value)}
                 />
             </FormControl>

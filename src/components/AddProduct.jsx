@@ -46,7 +46,8 @@ export function AddProduct() {
                 {FormInput({
                     inputName: "description",
                     inputLabel: "Descripción",
-                    setValue: setDescription
+                    setValue: setDescription,
+                    inputType: "textarea"
                 })}
                 {FormInput({
                     inputName: "price",

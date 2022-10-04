@@ -33,6 +33,20 @@ export async function addProduct(productData) {
     return data;
 }
 
+export async function updateProduct(productId, productData) {
+    const response = await fetch(API_URL + "/" + productId, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        body: JSON.stringify(productData)
+    });
+    const data = await response.json();
+
+    return data;
+}
+
 export async function deleteProduct(productId) {
     const response = await fetch(
         API_URL + "/" + productId,

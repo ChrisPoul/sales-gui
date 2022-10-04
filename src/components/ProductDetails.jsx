@@ -1,21 +1,52 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-    Box, Flex, Text, Icon, Spacer, Button
+    Box, Button
 } from "@chakra-ui/react"
-import { HiCalendar } from "react-icons/hi"
-import dayjs from "dayjs"
-import "dayjs/locale/es"
+import { FormInput } from "./common/FormInput"
 import * as API from "../services/products"
 
 export function ProductDetails() {
-    const [product, setProduct] = useState([]);
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState(0)
+    const [description, setDescription] = useState("")
     let { productId } = useParams()
     useEffect(() => {
-        API.getProduct(productId).then(setProduct)
-    }, [productId]);
+        API.getProduct(productId).then(product => {
+            setName(product.name)
+            setDescription(product.description)
+            setPrice(product.setPrice)
+            console.log(product)
+        })
+    }, []);
 
     const navigate = useNavigate()
+
+    const handleSubmit = event => {
+        event.preventDefault()
+        const response = API.updateProduct(
+            productId,
+            {
+                name: name,
+                price: price,
+                description: description
+            }
+        )
+        response.then(data => {
+            if (data == null) {
+                alert("Operación exitosa")
+                setName("")
+                setPrice(0)
+                setDescription("")
+            } else {
+                for (const key in data) {
+                    alert(data[key])
+                }
+            }
+            navigate("/products")
+        })
+    }
+
     const handleDelete = () => {
         if (window.confirm("Estas seguro que deseas borrar")) {
             const response = API.deleteProduct(productId)
@@ -27,27 +58,31 @@ export function ProductDetails() {
     }
 
     return (
-        <Box key={product.id} bg="gray.100" padding={2} margin={4} borderRadius="lg">
-            <Flex>
-                <Flex align="center">
-                    <Box>{product.name}</Box>
-                    <Flex align="center">
-                        <Icon as={HiCalendar} color="gray.500" marginX={1} />
-                        <Text fontSize="sm" color="gray.500">
-                            {dayjs(product.time_created).locale("es").format("D MMMM YYYY")}
-                        </Text>
-                    </Flex>
-                </Flex>
-                <Spacer />
-                <Box>
-                    {product.price}
-                </Box>
-            </Flex>
-            <Flex>
-                <Text>
-                    {product.description}
-                </Text>
-            </Flex>
+        <Box>
+            <form onSubmit={handleSubmit}>
+                {FormInput({
+                    inputName: "name",
+                    inputLabel: "Nombre",
+                    inputValue: name,
+                    setValue: setName,
+                    isRequired: true
+                })}
+                {FormInput({
+                    inputName: "description",
+                    inputLabel: "Descripción",
+                    inputValue: description,
+                    setValue: setDescription,
+                    inputType: "textarea"
+                })}
+                {FormInput({
+                    inputName: "price",
+                    inputLabel: "Price",
+                    inputValue: price,
+                    setValue: setPrice,
+                    inputType: "number"
+                })}
+                <Button type="submit">Aceptar</Button>
+            </form>
             <Button colorScheme="red" onClick={handleDelete}>
                 Delete
             </Button>
