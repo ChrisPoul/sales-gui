@@ -14,23 +14,25 @@ export function FormInput({
 } = {}) {
     if (inputType === "number") {
         return (
-            <NumberInput
-                key={inputName}
-                name={inputName}
-                onChange={(value) => setValue(value)}
-                format={(value) => `$` + value}
-                value={inputValue}
-                pattern="\$\d+\.?\d{0,2}"
-            >
+            <>
                 <FormLabel>{inputLabel}</FormLabel>
-                <NumberInputField
-                    onInvalid={event => event.target.setCustomValidity('El numero tener un máximo de 2 decimales')}
-                />
-                <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                </NumberInputStepper>
-            </NumberInput>
+                <NumberInput
+                    key={inputName}
+                    name={inputName}
+                    onChange={(value) => setValue(value)}
+                    format={(value) => `$` + value}
+                    value={inputValue}
+                    pattern="\$\d+\.?\d{0,2}"
+                >
+                    <NumberInputField
+                        onInvalid={event => event.target.setCustomValidity('El numero tener un máximo de 2 decimales')}
+                    />
+                    <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                    </NumberInputStepper>
+                </NumberInput>
+            </>
         )
     } else if (inputType === "textarea") {
         return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-    Box, Button
+    Box, Button, Flex
 } from "@chakra-ui/react"
 import { FormInput } from "./common/FormInput"
 import * as API from "../services/products"
@@ -15,10 +15,9 @@ export function ProductDetails() {
         API.getProduct(productId).then(product => {
             setName(product.name)
             setDescription(product.description)
-            setPrice(product.setPrice)
-            console.log(product)
+            setPrice(product.price)
         })
-    }, []);
+    }, [productId]);
 
     const navigate = useNavigate()
 
@@ -81,11 +80,19 @@ export function ProductDetails() {
                     setValue: setPrice,
                     inputType: "number"
                 })}
-                <Button type="submit">Aceptar</Button>
+                <Flex marginTop={2}>
+                    <Button type="submit">
+                        Aceptar
+                    </Button>
+                    <Button
+                        colorScheme="red"
+                        marginLeft={2}
+                        onClick={handleDelete}
+                    >
+                        Delete
+                    </Button>
+                </Flex>
             </form>
-            <Button colorScheme="red" onClick={handleDelete}>
-                Delete
-            </Button>
         </Box>
     )
 }

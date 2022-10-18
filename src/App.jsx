@@ -20,13 +20,16 @@ export function App() {
         divider={<StackDivider borderColor='gray.300' />}
       >
         <SideBar />
-        <Box width="100%" padding={5}>
+        <Box width="100%" paddingY={5} paddingX={20}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="products" element={<ProductList />} />
             <Route path="product/:productId" element={<ProductDetails />} />
             <Route path="addProduct" element={<AddProduct />} />
           </Routes>
+        </Box>
+        <Box width="20%">
+
         </Box>
       </HStack>
     </>
