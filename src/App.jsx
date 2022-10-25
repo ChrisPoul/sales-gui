@@ -11,11 +11,15 @@ import { NavBar } from "./components/NavBar";
 
 export function App() {
   return (
-    <>
+    <Box
+      backgroundColor="gray.200"
+      minHeight="100vh"
+    >
       <NavBar />
       <HStack
         spacing={5}
-        padding={3}
+        paddingX={20}
+        paddingY={10}
         align="stretch"
         divider={<StackDivider borderColor='gray.300' />}
       >
@@ -28,10 +32,7 @@ export function App() {
             <Route path="addProduct" element={<AddProduct />} />
           </Routes>
         </Box>
-        <Box width="20%">
-
-        </Box>
       </HStack>
-    </>
+    </Box>
   );
 }

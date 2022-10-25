@@ -24,18 +24,18 @@ export function ProductList() {
                     <Button>Añadir Producto</Button>
                 </Link>
             </Flex>
-            <section>
+            <Box bgColor="white" borderRadius="lg">
                 {products.map(product => (
                     ProductListItem(product)
                 ))}
-            </section>
+            </Box>
         </>
     )
 }
 
 export function ProductListItem(product) {
     return (
-        <Box key={product.id} bg="gray.100" padding={2} margin={4} borderRadius="lg">
+        <Box key={product.id} padding={6} shadow="base">
             <Flex>
                 <Flex align="center">
                     <Box>{product.name}</Box>
