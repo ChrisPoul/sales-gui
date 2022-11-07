@@ -34,8 +34,20 @@ export function ProductList() {
 }
 
 export function ProductListItem(product) {
+
+    const handleDelete = event => {
+        const productId = event.target.getAttribute('product_id')
+        if (window.confirm("Estas seguro que deseas borrar")) {
+            const response = API.deleteProduct(productId)
+            response.then(() => {
+                alert("Operación exitosa")
+                document.getElementById(productId).remove()
+            })
+        }
+    }
+
     return (
-        <Box key={product.id} padding={6} shadow="base">
+        <Box key={product.id} id={product.id} padding={6} shadow="base">
             <Flex>
                 <Flex align="center">
                     <Box>{product.name}</Box>
@@ -61,6 +73,13 @@ export function ProductListItem(product) {
                     More details
                 </Button>
             </Link>
+            <Button product_id={product.id}
+                colorScheme="red"
+                marginLeft={2}
+                onClick={handleDelete}
+            >
+                Delete
+            </Button>
         </Box>
     )
 }
