@@ -1,12 +1,16 @@
-import { Flex, Heading, Icon, Input } from "@chakra-ui/react";
+import { Flex, Heading, Icon, Input, Box } from "@chakra-ui/react";
 import { FcSalesPerformance } from "react-icons/fc"
 import { BiSearchAlt, BiLogOut, BiNotepad } from "react-icons/bi"
 import { Menu } from "./Menu"
 
 export function NavBar() {
     return (
-        <>
-            <Flex justifyContent="space-between" paddingX={10} paddingY={2}>
+        <Box bgColor="blue.300">
+            <Flex
+                justifyContent="space-between"
+                paddingX={10}
+                paddingY={2}
+            >
                 <Flex>
                     <Icon as={FcSalesPerformance} boxSize={10} margin={1} />
                     <Heading>Sales GUI</Heading>
@@ -35,6 +39,6 @@ export function NavBar() {
                 </Flex>
             </Flex>
             <Menu />
-        </>
+        </Box>
     )
 }
